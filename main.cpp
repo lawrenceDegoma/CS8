@@ -1,54 +1,68 @@
-// Matrix arithmetic
-
 #include <iostream>
-#include<ctime>
-#include <cstdlib>
-#include "Matrix.h"
-
+#include "LinkedList.cpp"
+#include <vector>
 
 int main() {
-    srand(time(0));
-    int c1,r1;
-    std::cout<<"Choose the size of the row of the first matrix: ";
-    std::cin>>r1;
-    std::cout<<"Choose the size of the column of the first matrix: ";
-    std::cin>>c1;
 
-    Matrix x(r1, c1);
-
-    int c2, r2;
-    std::cout << "Choose the size of the row of the second matrix: ";
-    std::cin >> r2;
-    std::cout << "Choose the size of the column of the second matrix: ";
-    std::cin >> c2;
-
-    Matrix y(r2, c2);
-
-    std::cout << "\n";
-    x.printMatrix();
-    std::cout << "\n";
-    y.printMatrix();
-
-    std::cout<<"\nAddition: \n";
-    Matrix z = x + y;
-    z.printMatrix();
-
-    std::cout<<"\nSubtraction: \n";
-    Matrix a = x - y;
-    a.printMatrix();
+    LinkedList<int> list;
+    for (int i = 0; i < 10; i++)
+        list.push_back(i);
 
 
-    std::cout<<"\nMultiplication: \n";
-    Matrix b = x * y;
-    b.printMatrix();
-
-    char ans;
-    std::cout << "Try again? (Y/N): ";
-    std::cin >> ans;
-    if (ans == 'y' || ans == 'y')
-        main();
-    else {
-        std::cout << "Exiting. Have a nice day!\n";
-        exit(0);
+    std::cout << "\n\n Iterator Test\n";
+    for (auto i: list) {
+        std::cout << i;
     }
+    std::cout << "\n\n Const Iterator Test\n";
+    for(auto i = list.cbegin(); i != list.cend(); ++i)
+    {
+        std::cout << *i << " ";
+    }
+
+    std::cout << "\n\n reverse Iterator Test\n";
+    for(auto i = list.rbegin(); i != list.rend(); ++i)
+    {
+        std::cout << *i << " ";
+    }
+    return 0;
 }
+
+
+
+/* Linked List
+ * A list of data connected by nodes in random parts of memory
+ *
+ * Fixes the problem:
+ * inserting in middle of list
+ * resizing arrays
+ * deleting from arrays
+ * sequential memory allocation
+ *
+ * What is a node:
+ * Data and some node pointer
+ * Node pointers are used to connect the nodes together
+ * To keep track of where the next and prev node in the list are
+ *
+ * Creating a first node
+ *
+ * template<T>
+ * Struct Node {
+ *      T data;
+ *      node<T>* next, prev
+ *
+ * Node<T>* n = new Node<T>
+ * n->next = nullptr;
+ * n->prev = nullptr;
+ * head = n;
+ * tail = n;
+ *
+ * Push_front:
+ * Node<T>* n = new Node<t>
+ * head->prev = n;
+ * n->next = head;
+ * head = n;
+ * n->prev = nullptr;
+ *
+ * Iterators
+*/
+
